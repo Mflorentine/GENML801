@@ -11,7 +11,7 @@ import streamlit as st
 
 
 # loading the saved model
-loaded_model = pickle.load(open('C:/RP/BTECH/Course preparation/2025-2026/Machine Learning 2025-2026/Local deployment and model saving/trained_model.sav', 'rb'))
+loaded_model = pickle.load(open('trained_model.sav', 'rb'))
 
 
 # creating a function for Prediction
@@ -88,3 +88,4 @@ if __name__ == '__main__':
     
 
   
+
