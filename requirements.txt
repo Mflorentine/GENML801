@@ -1,6 +1,6 @@
 numpy
-python
 streamlit
 scikit-learn
 pickleshare
+
 
