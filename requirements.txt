@@ -2,5 +2,7 @@ numpy
 streamlit
 scikit-learn
 pickleshare
+mysql-connector-python
+
 
 
