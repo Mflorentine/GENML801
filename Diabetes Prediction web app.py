@@ -77,16 +77,16 @@ def main():
         #diagnosis = diabetes_prediction([Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age])
         try:
             # Convert inputs to float
-            input_data = [float(Pregnancies), float(glucose), float(blood_pressure),
-                          float(skin_thickness), float(insulin), float(bmi),
-                          float(diabetes_pedigree), float(age)]
+            input_data = [float(Pregnancies), float(Glucose), float(BloodPressure),
+                          float(SkinThickness), float(Insulin), float(BMI),
+                          float(DiabetesPedigreeFunction), float(Age)]
 
             diagnosis = diabetes_prediction(input_data)
 
             # Save to database
-            save_prediction_to_db(float(Pregnancies), float(glucose), float(blood_pressure),
-                                  float(skin_thickness), float(insulin), float(bmi),
-                                  float(diabetes_pedigree), int(age), diagnosis)
+            save_prediction_to_db(float(Pregnancies), float(Glucose), float(BloodPressure),
+                                  float(SkinThickness), float(Insulin), float(BMI),
+                                  (DiabetesPedigreeFunction), float(Age), diagnosis)
         
              st.success(diagnosis)
         except ValueError:
@@ -111,6 +111,7 @@ if __name__ == '__main__':
     
 
   
+
 
 
 
