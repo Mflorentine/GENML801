@@ -30,8 +30,7 @@ def diabetes_prediction(input_data):
       return 'The person is diabetic'
         
 # Save prediction to MySQL
-def save_prediction_to_db(Pregnancies, glucose, blood_pressure, skin_thickness,
-                          insulin, bmi, diabetes_pedigree, age, prediction):
+def save_prediction_to_db(Pregnancies, Glucose, BloodPressure, SkinThickness,Insulin, BMI, DiabetesPedigreeFunction, Age, prediction):
     try:
         conn = mysql.connector.connect(
             host="localhost",  # Replace with your host
@@ -42,12 +41,9 @@ def save_prediction_to_db(Pregnancies, glucose, blood_pressure, skin_thickness,
         cursor = conn.cursor()
         query = """
             INSERT INTO diabetes_predictions (
-                pregnancies, glucose, blood_pressure, skin_thickness,
-                insulin, bmi, diabetes_pedigree, age, prediction
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-        """
-        data = (pregnancies, glucose, blood_pressure, skin_thickness,
-                insulin, bmi, diabetes_pedigree, age, prediction)
+                Pregnancies, Glucose, BloodPressure, SkinThickness,Insulin, bmi, DiabetesPedigreeFunction, Age, prediction
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+        data = (Pregnancies, Glucose, BloodPressure, SkinThickness,Insulin, BMI, DiabetesPedigreeFunction, Age, prediction)
         cursor.execute(query, data)
         conn.commit()
         cursor.close()
@@ -115,5 +111,6 @@ if __name__ == '__main__':
     
 
   
+
 
 
