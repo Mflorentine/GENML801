@@ -34,7 +34,7 @@ def save_prediction_to_db(Pregnancies, Glucose, BloodPressure, SkinThickness,
     try:
         # Connect to the MySQL database
         conn = mysql.connector.connect(
-            host="localhost",        # Hostname of the MySQL server
+            host="127.0.0.1",        # Hostname of the MySQL server
             user="root",             # MySQL username
             password="MpanoKuzwa@2", # MySQL password
             database="diabetes_predictions"  # Database name
@@ -48,8 +48,7 @@ def save_prediction_to_db(Pregnancies, Glucose, BloodPressure, SkinThickness,
             INSERT INTO diabetes_predictions (
                 Pregnancies, Glucose, BloodPressure, SkinThickness,
                 Insulin, bmi, DiabetesPedigreeFunction, Age, prediction
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-        """
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
         
         # Tuple of values to insert into the table
         data = (Pregnancies, Glucose, BloodPressure, SkinThickness,
@@ -113,3 +112,4 @@ def main():
 # Run the app
 if __name__ == '__main__':
     main()
+
