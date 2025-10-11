@@ -33,7 +33,7 @@ def save_prediction_to_db(Pregnancies, Glucose, BloodPressure, SkinThickness,Ins
     try:
         # Connect to the MySQL database
         conn = mysql.connector.connect(
-            host="127.0.0.1",        # Hostname of the MySQL server
+            host="localhost",        # Hostname of the MySQL server
             user="root",             # MySQL username
             password="MpanoKuzwa@2", # MySQL password
             database="diabetes_predictions"  # Database name
@@ -112,6 +112,7 @@ def main():
 # Run the app
 if __name__ == '__main__':
     main()
+
 
 
 
