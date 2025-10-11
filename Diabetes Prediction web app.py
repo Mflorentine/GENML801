@@ -29,8 +29,7 @@ def diabetes_prediction(input_data):
     return 'The person is diabetic' if prediction[0] == 1 else 'The person is not diabetic'
 
 # Define a function to save prediction and inputs to MySQL database
-def save_prediction_to_db(Pregnancies, Glucose, BloodPressure, SkinThickness,
-                          Insulin, BMI, DiabetesPedigreeFunction, Age, prediction):
+def save_prediction_to_db(Pregnancies, Glucose, BloodPressure, SkinThickness,Insulin, BMI, DiabetesPedigreeFunction, Age, prediction):
     try:
         # Connect to the MySQL database
         conn = mysql.connector.connect(
@@ -113,6 +112,7 @@ def main():
 # Run the app
 if __name__ == '__main__':
     main()
+
 
 
 
