@@ -32,12 +32,12 @@ def diabetes_prediction(input_data):
 def save_prediction_to_db(Pregnancies, Glucose, BloodPressure, SkinThickness,
                           Insulin, BMI, DiabetesPedigreeFunction, Age, prediction):
     try:
-        # Connect to the MySQL database using Streamlit secrets
+        # Connect to the MySQL database
         conn = mysql.connector.connect(
-            host=st.secrets["mysql"]["db4free.net"],        # Hostname from secrets
-            user=st.secrets["mysql"]["root"],        # Username from secrets
-            password=st.secrets["mysql"]["Aryan@2023"],# Password from secrets
-            database=st.secrets["mysql"]["diabetes_test"] # Database name from secrets
+            host="localhost",        # Hostname of the MySQL server
+            user="root",             # MySQL username
+            password="MpanoKuzwa@2", # MySQL password
+            database="diabetes_predictions"  # Database name
         )
         
         # Create a cursor object to execute SQL queries
@@ -47,7 +47,7 @@ def save_prediction_to_db(Pregnancies, Glucose, BloodPressure, SkinThickness,
         query = """
             INSERT INTO diabetes_predictions (
                 Pregnancies, Glucose, BloodPressure, SkinThickness,
-                Insulin, BMI, DiabetesPedigreeFunction, Age, prediction
+                Insulin, bmi, DiabetesPedigreeFunction, Age, prediction
             ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
         
@@ -99,7 +99,9 @@ def main():
             diagnosis = diabetes_prediction(input_data)
 
             # Save the input and prediction result to the database
-            save_prediction_to_db(*input_data, diagnosis)
+            save_prediction_to_db(float(Pregnancies), float(Glucose), float(BloodPressure),
+                                  float(SkinThickness), float(Insulin), float(BMI),
+                                  float(DiabetesPedigreeFunction), float(Age), diagnosis)
 
             # Display the result to the user
             st.success(diagnosis)
