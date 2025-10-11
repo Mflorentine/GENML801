@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 18 19:15:01 2021
-
 @author: BTech ETT
 """
 
@@ -112,4 +108,5 @@ def main():
 # Run the app
 if __name__ == '__main__':
     main()
+
 
