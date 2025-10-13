@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Nov 18 19:15:01 2021
+
 @author: BTech ETT
 """
 
@@ -28,12 +32,12 @@ def diabetes_prediction(input_data):
 def save_prediction_to_db(Pregnancies, Glucose, BloodPressure, SkinThickness,
                           Insulin, BMI, DiabetesPedigreeFunction, Age, prediction):
     try:
-        # Connect to the MySQL database
+        # Connect to the MySQL database using Streamlit secrets
         conn = mysql.connector.connect(
-            host="127.0.0.1",        # Hostname of the MySQL server
-            user="root",             # MySQL username
-            password="MpanoKuzwa@2", # MySQL password
-            database="diabetes_predictions"  # Database name
+            host=st.secrets["mysql"]["host"],        # Hostname from secrets
+            user=st.secrets["mysql"]["user"],        # Username from secrets
+            password=st.secrets["mysql"]["password"],# Password from secrets
+            database=st.secrets["mysql"]["database"] # Database name from secrets
         )
         
         # Create a cursor object to execute SQL queries
@@ -44,7 +48,8 @@ def save_prediction_to_db(Pregnancies, Glucose, BloodPressure, SkinThickness,
             INSERT INTO diabetes_predictions (
                 Pregnancies, Glucose, BloodPressure, SkinThickness,
                 Insulin, bmi, DiabetesPedigreeFunction, Age, prediction
-            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"""
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+        """
         
         # Tuple of values to insert into the table
         data = (Pregnancies, Glucose, BloodPressure, SkinThickness,
@@ -94,9 +99,7 @@ def main():
             diagnosis = diabetes_prediction(input_data)
 
             # Save the input and prediction result to the database
-            save_prediction_to_db(float(Pregnancies), float(Glucose), float(BloodPressure),
-                                  float(SkinThickness), float(Insulin), float(BMI),
-                                  float(DiabetesPedigreeFunction), float(Age), diagnosis)
+            save_prediction_to_db(*input_data, diagnosis)
 
             # Display the result to the user
             st.success(diagnosis)
@@ -108,6 +111,3 @@ def main():
 # Run the app
 if __name__ == '__main__':
     main()
-
-
-
